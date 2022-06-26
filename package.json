@@ -10,7 +10,7 @@
     "start": "npm run build && DOTENV_CONFIG_PATH=.env.production NODE_ENV=production TS_NODE_BASEURL=./dist node -r tsconfig-paths/register -r dotenv/config ./dist/server.js",
     "watch": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=dev nodemon -r dotenv/config -r tsconfig-paths/register src/server.ts",
     "lint": "eslint .",
-    "coverage": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=test nyc mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
+    "coverage": "DOTENV_CONFIG_PATH=.env.test NODE_ENV=test nyc mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
     "pipe:coverage": "npm run coverage && node coverage-results.mjs 100"
   },
   "keywords": [],
