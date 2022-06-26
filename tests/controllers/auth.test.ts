@@ -22,7 +22,7 @@ describe('Tests for Auth routes & controllers', () => {
 
   it('/signup controller should return 400 with errors on  validation errors', async () => {
     await request(app)
-      .post('/auth/signup')
+      .post('/api/auth/signup')
       .send({
         email: '',
         password: '',
@@ -41,7 +41,7 @@ describe('Tests for Auth routes & controllers', () => {
       //eslint-disable-next-line
     } catch (_) {}
     await request(app)
-      .post('/auth/signup')
+      .post('/api/auth/signup')
       .send({
         email: 'correct-email@email.com',
         password: '123mnnDx.4213fa$',
@@ -60,7 +60,7 @@ describe('Tests for Auth routes & controllers', () => {
     const stub = sinon.stub(bcrypt, 'hash').resolves('pw');
     const password = '123mnnDx.4213fa$';
     await request(app)
-      .post('/auth/signup')
+      .post('/api/auth/signup')
       .send({
         email: 'correct-email@email.com',
         password,
@@ -78,7 +78,7 @@ describe('Tests for Auth routes & controllers', () => {
   });
   it('/login should return 400 if validation errors occur.', async () => {
     await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: '',
         password: '',
@@ -95,7 +95,7 @@ describe('Tests for Auth routes & controllers', () => {
 
     const stub = sandbox.stub(User, 'findOne').resolves(null);
     await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: 'non-existing-user@email.com',
         password: '123.;-*1abD',
@@ -111,7 +111,7 @@ describe('Tests for Auth routes & controllers', () => {
     sandbox.stub(User, 'findOne').resolves({password: 'dumy-pw'});
     sandbox.stub(bcrypt, 'compare').resolves(false);
     await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: 'non-existing-user@email.com',
         password: '123.;-*1abD',
@@ -133,7 +133,7 @@ describe('Tests for Auth routes & controllers', () => {
     sandbox.stub(bcrypt, 'compare').rejects({message: 'bcrypt-error'});
 
     await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: 'non-existing-user@email.com',
         password: '123.;-*1abD',
@@ -148,7 +148,7 @@ describe('Tests for Auth routes & controllers', () => {
     sandbox.stub(User, 'findOne').resolves({password: '123'});
 
     await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: 'non-existing-user@email.com',
         password: '123.;-*1abD',
@@ -170,7 +170,7 @@ describe('Tests for Auth routes & controllers', () => {
     const stub = sandbox.stub(jwt, 'sign').resolves('ok');
 
     await request(app)
-      .post('/auth/login')
+      .post('/api/auth/login')
       .send({
         email: 'non-existing-user@email.com',
         password: '123.;-*1abD',
