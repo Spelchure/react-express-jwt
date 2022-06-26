@@ -1,5 +1,7 @@
 {
   "exclude": ["node_modules", "tests/**/*test.ts"],
+  "files": ["src/types/custom.d.ts"],
+  "include": ["src/**/*.ts"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

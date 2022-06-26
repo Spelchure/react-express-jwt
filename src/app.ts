@@ -11,6 +11,7 @@ export default function createServer() {
   app.use(bodyParser.json());
 
   app.use('/auth', routes.authRoutes);
+  app.use('/api/protected', routes.protectedRoutes);
 
   app.use('/', (_: Request, res: Response) => {
     res.status(200).json({message: 'Success'});
