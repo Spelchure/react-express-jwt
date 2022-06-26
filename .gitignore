@@ -1,0 +1,22 @@
+node_modules
+dist
+#NPM Debug Log
+npm-debug.log
+.DS_Store
+
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+.eslintcache
+template.txt
+
+# Coverage results
+.nyc_output
+coverage
+
+# Logs
+*.log
+
+# Templates
+Template.md
