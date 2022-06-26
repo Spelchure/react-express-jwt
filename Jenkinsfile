@@ -4,7 +4,7 @@ pipeline {
     stage("test-and-build") {
       agent {
         docker {
-          image 'node:18.14.0-alpine3.15'
+          image 'node:18.4.0-alpine3.15'
         }
       }
       stages {
