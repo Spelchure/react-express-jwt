@@ -2,35 +2,43 @@ pipeline {
   agent none
   stages {
     stage("test-and-build") {
-      agent {
-        docker {
-          image 'node:18.4.0-alpine3.15'
-        }
-      }
-      stages {
-        stage('install-deps') {
-          steps {
-            sh 'npm install'
+      matrix {
+        agent {
+          docker {
+            image "node:${NODE_VERSION}"
           }
         }
-        stage('unit-test') {
-          steps {
-            sh 'npm run test'
+        axes {
+          axis {
+            name 'NODE_VERSION'
+            values '18.4.0-alpine3.15', '16-alpine3.15', '14-alpine3.15', 'lts-bullseye'
           }
         }
-        stage('code-coverage') {
-          steps {
-            sh 'npm run pipe:coverage'
+        stages {
+          stage('install-deps') {
+            steps {
+              sh 'npm install'
+            }
           }
-        }
-        stage('code-lint') {
-          steps {
-            sh 'npm run lint'
+          stage('unit-test') {
+            steps {
+              sh 'npm run test'
+            }
           }
-        }
-        stage('build') {
-          steps {
-            sh 'npm run build'
+          stage('code-coverage') {
+            steps {
+              sh 'npm run pipe:coverage'
+            }
+          }
+          stage('code-lint') {
+            steps {
+              sh 'npm run lint'
+            }
+          }
+          stage('build') {
+            steps {
+              sh 'npm run build'
+            }
           }
         }
       }
