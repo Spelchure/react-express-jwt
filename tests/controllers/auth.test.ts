@@ -16,6 +16,7 @@ describe('Tests for Auth routes & controllers', () => {
     });
   });
   after(async () => {
+    await User.deleteMany({});
     await mongoose.disconnect();
   });
 
