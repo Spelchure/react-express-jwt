@@ -11,7 +11,7 @@
     "watch": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=dev nodemon -r dotenv/config -r tsconfig-paths/register src/server.ts",
     "lint": "eslint .",
     "coverage": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=test nyc mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
-    "pipe:coverage": "npm run coverage && node coverage-result.mjs 100"
+    "pipe:coverage": "npm run coverage && node coverage-results.mjs 100"
   },
   "keywords": [],
   "author": "",
@@ -66,7 +66,9 @@
       "src/server.ts",
       "src/app.ts",
       "**/*.d.ts",
-      "**/*.test.ts"
+      "**/*.test.ts",
+      "mongo-storage",
+      "src/middleware/auth-middleware.ts"
     ],
     "reporter": [
       "html",

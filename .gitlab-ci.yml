@@ -1,0 +1,53 @@
+image: node:18.4.0-alpine3.15
+stages:
+  - build
+  - test
+
+build-job:
+  stage: build
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - .npmrc
+    policy: push
+  script:
+    - echo "Building"
+    - npm install
+    - npm run build
+
+test-job:
+  stage: test
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - .npmrc
+    policy: pull
+  script:
+    - echo "Testing"
+    - npm run test
+
+lint-job:
+  stage: test
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - .npmrc
+    policy: pull
+  script:
+    - echo "Linting"
+    - npm run lint
+
+coverage-job:
+  stage: test
+  cache:
+    key: build-cache
+    paths:
+      - node_modules/
+      - .npmrc
+    policy: pull
+  script:
+    - echo "Code coverage"
+    - npm run pipe:coverage

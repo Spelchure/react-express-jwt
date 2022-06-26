@@ -1,6 +1,6 @@
 import createExpressApp from 'app';
 import {expect} from 'chai';
-import mongoose, {mongo} from 'mongoose';
+import mongoose from 'mongoose';
 import request from 'supertest';
 import bcrypt from 'bcryptjs';
 import sinon from 'sinon';
