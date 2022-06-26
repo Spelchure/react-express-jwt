@@ -9,3 +9,7 @@ services:
       - ./mongo-storage:/data/db
     ports:
       - '27017-27019:27017-27019'
+  react-express-jwt:
+    build: .
+    ports:
+      - '9000:9000'
