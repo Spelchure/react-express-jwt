@@ -20,3 +20,6 @@ coverage
 
 # Templates
 Template.md
+
+# MongoDB Volume
+mongo-storage
