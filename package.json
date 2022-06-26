@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "test": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=test mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
+    "test": "DOTENV_CONFIG_PATH=.env.test NODE_ENV=test mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
     "dev": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=dev ts-node -r tsconfig-paths/register -r dotenv/config src/server.ts",
     "build": "tsc -p .",
     "start": "npm run build && DOTENV_CONFIG_PATH=.env.production NODE_ENV=production TS_NODE_BASEURL=./dist node -r tsconfig-paths/register -r dotenv/config ./dist/server.js",
@@ -17,16 +17,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
+    "express-validator": "^6.14.2",
     "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/chai": "^4.3.1",
     "@types/cors": "^2.8.12",
     "@types/deep-equal-in-any-order": "^1.0.1",
     "@types/express": "^4.17.13",
+    "@types/jsonwebtoken": "^8.5.8",
     "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.0",
     "@types/sinon": "^10.0.11",
