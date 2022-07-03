@@ -1,17 +1,17 @@
 /**
  * Documentation
  */
-import { configureStore } from "@reduxjs/toolkit";
-
+import {configureStore} from '@reduxjs/toolkit';
+import isAuthSlice from './features/is-auth/isAuthSlice';
 const store = configureStore({
   reducer: {
     /** Reducers */
-    // counter: counterSlice,
+    isAuth: isAuthSlice,
   },
   /**  middleware: (getDefaultMiddleware)
    *    => getDefaultMiddleware().concat(logger),
    */
-  devTools: process.env.NODE_ENV !== "production",
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 export default store;

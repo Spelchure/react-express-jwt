@@ -3,3 +3,4 @@ dist
 .nyc
 coverage
 mongo-storage
+react-jwt

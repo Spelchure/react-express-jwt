@@ -2,12 +2,21 @@
   "name": "react-express-jwt",
   "version": "1.0.0",
   "description": "",
-  "main": "src/server.ts",
+  "main": "dist/server.js",
+  "files": [
+    "dist",
+    ".env.production",
+    "ChangeLog.md",
+    "docker-compose.yml",
+    "Dockerfile",
+    "tsconfig.json"
+  ],
   "scripts": {
     "test": "DOTENV_CONFIG_PATH=.env.test NODE_ENV=test mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
     "dev": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=dev ts-node -r tsconfig-paths/register -r dotenv/config src/server.ts",
     "build": "tsc -p .",
-    "start": "npm run build && DOTENV_CONFIG_PATH=.env.production NODE_ENV=production TS_NODE_BASEURL=./dist node -r tsconfig-paths/register -r dotenv/config ./dist/server.js",
+    "start:prod": "DOTENV_CONFIG_PATH=.env.production NODE_ENV=production TS_NODE_BASEURL=./dist node -r tsconfig-paths/register -r dotenv/config ./dist/server.js",
+    "start": "npm run build &&  npm run start:prod",
     "watch": "DOTENV_CONFIG_PATH=.env.development NODE_ENV=dev nodemon -r dotenv/config -r tsconfig-paths/register src/server.ts",
     "lint": "eslint .",
     "coverage": "DOTENV_CONFIG_PATH=.env.test NODE_ENV=test nyc mocha --check-leaks -r ts-node/register -r tsconfig-paths/register -r dotenv/config tests/**/*.test.ts",
@@ -23,7 +32,9 @@
     "express-validator": "^6.14.2",
     "helmet": "^5.1.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.4.0"
+    "mongoose": "^6.4.0",
+    "cors": "^2.8.5",
+    "tsconfig-paths": "^4.0.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -38,9 +49,7 @@
     "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",
-    "axios": "^0.27.2",
     "chai": "^4.3.6",
-    "cors": "^2.8.5",
     "deep-equal-in-any-order": "^1.1.19",
     "eslint": "^8.18.0",
     "eslint-config-prettier": "^8.5.0",
@@ -51,7 +60,6 @@
     "sinon": "^14.0.0",
     "supertest": "^6.2.3",
     "ts-node": "^10.8.1",
-    "tsconfig-paths": "^4.0.0",
     "typescript": "^4.7.4"
   },
   "nyc": {
